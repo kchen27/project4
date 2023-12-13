@@ -1,9 +1,9 @@
-from pgmpy.models import BayesianModel
+from pgmpy.models import BayesianNetwork
 from pgmpy.factors.discrete import TabularCPD
 from pgmpy.inference import VariableElimination
 
 # Define the structure of the Bayesian network
-model = BayesianModel([('Burglary', 'Alarm'), 
+model = BayesianNetwork([('Burglary', 'Alarm'), 
                        ('Earthquake', 'Alarm'), 
                        ('Alarm', 'JohnCalls'), 
                        ('Alarm', 'MaryCalls')])
@@ -40,5 +40,4 @@ inference = VariableElimination(model)
 result = inference.query(variables=['Burglary'], evidence={'JohnCalls': 0})
 
 # Display the resulting probability distribution
-result_table = result.values
-result_table
+print(result)
